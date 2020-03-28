@@ -43,3 +43,8 @@ trello-cli export --all
 ```
 trello-cli export --board=board_id --includeAttachments
 ```
+
+What programming language should this use?
+==========================================
+
+Ideally this would be an extension to the existing tools above. Node/typescript/python would all be ok.
