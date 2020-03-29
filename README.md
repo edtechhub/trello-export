@@ -26,6 +26,7 @@ pip install py-trello
 We'd like to build an app that works as follows:
 
 (1) Authenticate:
+Add the api_key in config.json. Can be found from https://trello.com/1/appKey/generate
 ```
 trello-export authenticate
 ```
