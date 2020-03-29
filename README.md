@@ -1,4 +1,4 @@
-# trello-cli
+# trello-export
 
 There are existing Trello CLIs, e.g.
 
@@ -21,27 +21,27 @@ We'd like to build an app that works as follows:
 
 (1) Authenticate:
 ```
-trello-cli authenticate
+trello-export authenticate
 ```
 (This could be via an API key stored in a file, whatever is easiest)
 
 (2) List boards (the above apps can do that)
 ```
-trello-cli boardlist
+trello-export boardlist
 ```
 
 (3) Export board as json
 ```
-trello-cli export --board=board_id
+trello-export export --board=board_id
 ```
 or
 ```
-trello-cli export --all
+trello-export export --all
 ```
 
 (4) It would be good to be able to export assests as well (such as attached images or files)
 ```
-trello-cli export --board=board_id --includeAttachments
+trello-export export --board=board_id --includeAttachments
 ```
 
 What programming language should this use?
