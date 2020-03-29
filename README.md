@@ -17,6 +17,12 @@ Board menu > More > Print and Export > JSON
 ```
 to download JSON of the board. 
 
+# Installation
+```
+pip install py-trello
+```
+# Usage
+
 We'd like to build an app that works as follows:
 
 (1) Authenticate:
