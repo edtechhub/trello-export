@@ -11,6 +11,7 @@ parser.add_argument('-l', '--authenticate', action='store_true', default=False)
 parser.add_argument('-t', '--token', action='store', type=str)
 parser.add_argument('-a', '--all', action='store_true', default=False)
 parser.add_argument('-b', '--board', action='store', type=str)
+parser.add_argument('--list', action='store_true', default=False)
 
 
 class Auth:
@@ -52,6 +53,10 @@ class TrelloExport:
         with open('{}.json'.format(board_id), 'w') as f:
             json.dump(board_resp.json(), f)
 
+    def list_boards(self):
+        for board in self.client.list_boards():
+            print(board.name)
+
 
 if __name__ == "__main__":
     arguments = parser.parse_args()
@@ -59,13 +64,17 @@ if __name__ == "__main__":
         print('Authenticate request')
         Auth.authenticate()
 
-    if arguments.token:
+    elif arguments.token:
         print('Setting token in config')
         Auth.set_token(arguments.token)
 
-    trello_export = TrelloExport()
-    if arguments.all:
-        trello_export.to_json()
+    else:
+        trello_export = TrelloExport()
+        if arguments.all:
+            trello_export.to_json()
 
-    if arguments.board:
-        trello_export.board_to_json(arguments.board)
+        elif arguments.board:
+            trello_export.board_to_json(arguments.board)
+
+        elif arguments.list:
+            trello_export.list_boards()
