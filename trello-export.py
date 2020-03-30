@@ -55,7 +55,7 @@ class TrelloExport:
 
     def list_boards(self):
         for board in self.client.list_boards():
-            print(board.name)
+            print('{}: {}'.format(board.id, board.name))
 
 
 if __name__ == "__main__":
