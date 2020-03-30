@@ -34,7 +34,7 @@ class Auth:
 class TrelloExport:
     def __init__(self):
         config = json.load(open('./config.json'))
-        self.api_key = config.get('api_key'),
+        self.api_key = config.get('api_key')
         self.token = config.get('token')
         self.client = TrelloClient(
             api_key=self.api_key,
