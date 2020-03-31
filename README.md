@@ -48,7 +48,6 @@ trello-export --all
 
 Note: You will get up to 1000 actions ('card history').
 
-What programming language should this use?
-==========================================
+# Credits
 
-Ideally this would be an extension to the existing tools above. Node/typescript/python would all be ok.
+This tool was developed by https://github.com/a1diablo with input from https://github.com/bjohas.
