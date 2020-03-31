@@ -50,6 +50,10 @@ class TrelloExport:
     def board_to_json(self, board_id):
         board_resp = requests.get(TRELLO_JSON_URL.format(
             board_id, self.api_key, self.token))
+        actions = board_resp.json()['actions']
+        print('actions size: ', len(actions))
+        if len(actions) > 1000:
+            print('More than 1000 actions. Truncating to recent 1000.')
         with open('{}.json'.format(board_id), 'w') as f:
             json.dump(board_resp.json(), f)
 
