@@ -20,36 +20,33 @@ to download JSON of the board.
 # Installation
 ```
 pip install py-trello
+git clone https://github.com/edtechhub/trello-export.git
+cd trello-export
+```
+# Setup
+Add the api_key in config.json. Can be found from https://trello.com/1/appKey/generate
+```
+./trello-export.py --help
+./trello-export.py --authenticate
+./trello-export.py --token TOKEN
 ```
 # Usage
 
-We'd like to build an app that works as follows:
-
-(1) Authenticate:
-Add the api_key in config.json. Can be found from https://trello.com/1/appKey/generate
+List boards (the above apps can do that)
 ```
-trello-export authenticate
-```
-(This could be via an API key stored in a file, whatever is easiest)
-
-(2) List boards (the above apps can do that)
-```
-trello-export boardlist
+trello-export --list
 ```
 
-(3) Export board as json
+Export board as json
 ```
-trello-export export --board=board_id
+trello-export --board=board_id
 ```
 or
 ```
-trello-export export --all
+trello-export --all
 ```
 
-(4) It would be good to be able to export assests as well (such as attached images or files)
-```
-trello-export export --board=board_id --includeAttachments
-```
+Note: You will get up to 1000 actions ('card history').
 
 What programming language should this use?
 ==========================================
