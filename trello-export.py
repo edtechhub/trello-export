@@ -82,14 +82,8 @@ class TrelloExport:
         board = self.board_to_json(board_id, actions=0, cards='visible')
         all_cards = board.get('cards')
         if trello_list:
-            found = False
-            for found_list in filter(
-                    lambda item: item.get('name') == trello_list, board.get('lists')):
-                found = True
-                all_cards = list(filter(
-                    lambda item: item.get('idList') == found_list.get('id'), all_cards))
-            if not found:
-                all_cards = []
+            all_cards = list(filter(
+                lambda item: item.get('idList') == trello_list, all_cards))
 
         if user:
             found = False
@@ -143,9 +137,9 @@ if __name__ == "__main__":
         elif arguments.filter:
             filters = trello_export.get_filters_from_file(arguments.filter)
             output = []
-            for (board_id, list_name) in filters:
+            for (board_id, list_id) in filters:
                 output += trello_export.get_cards(
-                    board_id, list_name, arguments.user)
+                    board_id, list_id, arguments.user)
             output_file = "{}_{}.json".format(arguments.filter, output_file)
 
         if output:
