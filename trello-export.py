@@ -8,13 +8,13 @@ import datetime
 TRELLO_JSON_URL = 'https://trello.com/1/boards/{}?key={}&token={}&fields=all&actions=all&action_fields=all&actions_limit={}&cards={}&card_fields=all&card_attachments=true&lists=all&list_fields=all&members=all&member_fields=all&checklists=all&checklist_fields=all&organization=false'
 
 parser = argparse.ArgumentParser(description='Trello command line utility')
-parser.add_argument('-u', '--authenticate', action='store_true', default=False)
+parser.add_argument('-A', '--authenticate', action='store_true', default=False)
 parser.add_argument('-t', '--token', action='store', type=str)
 parser.add_argument('-a', '--all', action='store_true', default=False)
 parser.add_argument('-b', '--board', action='store', type=str)
 parser.add_argument('-l', '--list', action='store_true', default=False)
 parser.add_argument('-f', '--filter', action='store', type=str)
-parser.add_argument('--user', action='store', type=str)
+parser.add_argument('-u', '--user', action='store', type=str)
 
 
 class Auth:
