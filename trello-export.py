@@ -12,7 +12,7 @@ parser.add_argument('-A', '--authenticate', action='store_true', default=False)
 parser.add_argument('-t', '--token', action='store', type=str)
 parser.add_argument('-a', '--all', action='store_true', default=False)
 parser.add_argument('-b', '--board', action='store', type=str)
-parser.add_argument('-l', '--list', action='store_true', default=False)
+parser.add_argument('-B', '--boards', action='store_true', default=False)
 parser.add_argument('-f', '--filter', action='store', type=str)
 parser.add_argument('-u', '--user', action='store', type=str)
 
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             output = trello_export.board_to_json(arguments.board)
             output_file = "{}_{}.json".format(arguments.board, output_file)
 
-        elif arguments.list:
+        elif arguments.boards:
             trello_export.list_boards()
 
         elif arguments.filter:
