@@ -15,6 +15,7 @@ parser.add_argument('-b', '--board', action='store', type=str)
 parser.add_argument('-B', '--boards', action='store_true', default=False)
 parser.add_argument('-f', '--filter', action='store', type=str)
 parser.add_argument('-u', '--user', action='store', type=str)
+parser.add_argument('-l', '--lists', action='store_true', default=False)
 
 
 class Auth:
@@ -102,6 +103,14 @@ class TrelloExport:
 
         return all_cards
 
+    def list_lists(self, board_id=None):
+        boards = [self.client.get_board(
+            board_id)] if board_id else self.client.list_boards()
+        for board in boards:
+            print('{} {}'.format(board.id, board.name))
+            for lst in board.all_lists():
+                print('\t{} {}'.format(lst.id, lst.name))
+
 
 if __name__ == "__main__":
     arguments = parser.parse_args()
@@ -120,6 +129,9 @@ if __name__ == "__main__":
         if arguments.all:
             output = trello_export.to_json()
             output_file = "all_{}.json".format(output_file)
+
+        elif arguments.lists:
+            trello_export.list_lists(arguments.board)
 
         elif arguments.board:
             output = trello_export.board_to_json(arguments.board)
