@@ -75,7 +75,7 @@ class TrelloExport:
         with open(filter_file) as f:
             content = f.readlines()
         filters = [(c.split(' ')[0].strip(), ' '.join(c.split(' ')[1:]).strip())
-                   for c in content]
+                   for c in content if c.strip()[0] != '#']
         return filters
 
     def get_cards(self, board_id, trello_list=None, user=None):
