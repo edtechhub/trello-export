@@ -1,2 +1,3 @@
-config_my.json
+*.json
 __pycache__
+*.txt
