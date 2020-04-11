@@ -17,11 +17,12 @@ parser.add_argument('-f', '--filter', action='store', type=str)
 parser.add_argument('-u', '--user', action='store', type=str)
 parser.add_argument('-l', '--lists', action='store_true', default=False)
 
+trelloConfig = os.environ['HOME'] + '/.config/trello-export/config.json'
 
 class Auth:
     @classmethod
     def authenticate(cls):
-        config = json.load(open('./config.json'))
+        config = json.load(open(trelloConfig))
         api_key = config.get('api_key')
         auth_url = 'https://trello.com/1/authorize?expiration=30days&name=TrelloExport&scope=read,write&response_type=token&key={}'.format(
             api_key)
@@ -29,16 +30,16 @@ class Auth:
 
     @classmethod
     def set_token(cls, token):
-        config = json.load(open('./config.json'))
+        config = json.load(open(trelloConfig))
         config['token'] = token
-        with open('config.json', 'w') as f:
+        with open(trelloConfig, 'w') as f:
             json.dump(config, f)
         print('Token set successfully')
 
 
 class TrelloExport:
     def __init__(self):
-        config = json.load(open('./config.json'))
+        config = json.load(open(trelloConfig))
         self.api_key = config.get('api_key')
         self.token = config.get('token')
         self.client = TrelloClient(
@@ -140,7 +141,8 @@ if __name__ == "__main__":
             for (board_id, list_id) in filters:
                 output += trello_export.get_cards(
                     board_id, list_id, arguments.user)
-            output_file = "{}_{}.json".format(arguments.filter, output_file)
+            #output_file = "{}_{}.json".format(arguments.filter, output_file)
+            output_file = "filter_{}.json".format(output_file)
 
         if output:
             trello_export.save_json_to_file(output, output_file)
